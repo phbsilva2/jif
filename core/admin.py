@@ -5,5 +5,7 @@ from .models import UnidadeOrganizacional
 
 @admin.register(UnidadeOrganizacional)
 class UnidadeOrganizacionalAdmin(admin.ModelAdmin):
-    list_filter = ('nome',)
-
+    ordering = ('nome',)
+    search_fields = ('nome',)
+    list_per_page = 10
+    actions_on_top = False
