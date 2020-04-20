@@ -7,7 +7,7 @@ class UnidadeOrganizacionalTesteCase(TestCase):
         self.unidade_organizacional = mommy.make('UnidadeOrganizacional')
 
     def test_str(self):
-        self.assertAlmostEqual(str(self.unidade_organizacional), self.unidade_organizacional.nome)
+        self.assertEquals(str(self.unidade_organizacional), self.unidade_organizacional.nome)
 
 
 class TipoModalidadeTestCase(TestCase):
