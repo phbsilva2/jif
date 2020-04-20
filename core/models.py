@@ -9,12 +9,9 @@ class UnidadeOrganizacional(models.Model):
     #         2. O sistema apresenta os campos para entrada dos dados:
     #             - Nome (Obrigatório / Não se repete)
 
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100, unique=True)
 
     class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['nome'], name='unique_unidadeorganizacional_nome')
-        ]
         verbose_name = 'Unidade Organizacional'
         verbose_name_plural = 'Unidades Organizacionais'
 
@@ -27,12 +24,9 @@ class TipoModalidade(models.Model):
     #
     # UC11 – Manter Tipos de Modalidades:
 
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100, unique=True)
 
     class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['nome'], name='unique_tipomodalidade_nome')
-        ]
         verbose_name = 'Tipo de Modalidade'
         verbose_name_plural = 'Tipos de Modalidades'
 
@@ -54,7 +48,7 @@ class Modalidade(models.Model):
     nome = models.CharField(max_length=100, unique=True)
     sigla = models.CharField(max_length=10, unique=True)
     tipo = models.CharField(max_length=1, choices=[['I', 'Individual'], ['C', 'Coletivo']])
-    tipo_modalidade = models.ForeignKey(TipoModalidade, on_delete=models.CASCADE)
+    tipo_modalidade = models.ForeignKey(TipoModalidade, on_delete=models.CASCADE, verbose_name='Tipo de Modalidade')
 
     class Meta:
         verbose_name = 'Modalidade'

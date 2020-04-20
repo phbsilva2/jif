@@ -9,6 +9,7 @@ from .models import (
 
 @admin.register(UnidadeOrganizacional)
 class UnidadeOrganizacionalAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
     ordering = ('nome',)
     search_fields = ('nome',)
     list_per_page = 10
@@ -17,6 +18,7 @@ class UnidadeOrganizacionalAdmin(admin.ModelAdmin):
 
 @admin.register(TipoModalidade)
 class TipoModalidade(admin.ModelAdmin):
+    list_display = ('nome',)
     ordering = ('nome',)
     search_fields = ('nome',)
     list_per_page = 10
