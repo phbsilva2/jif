@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class UnidadeOrganizacional(models.Model):
     # Unidade Organizacional é ...
     #
@@ -20,3 +21,20 @@ class UnidadeOrganizacional(models.Model):
     def __str__(self):
         return self.nome
 
+
+class TipoModalidade(models.Model):
+    # Tipo de Modalidade é ...
+    #
+    # UC11 – Manter Tipos de Modalidades:
+
+    nome = models.CharField(max_length=100)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['nome'], name='unique_tipomodalidade_nome')
+        ]
+        verbose_name = 'Tipo de Modalidade'
+        verbose_name_plural = 'Tipos de Modalidades'
+
+    def __str__(self):
+        return self.nome
