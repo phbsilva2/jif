@@ -2,10 +2,11 @@
 # Testar somente o que está dentro do projeto (ignora o ambiente virtual)
 source = .
 
-# Arquivos que serão omitidos no testes:
+# Arquivos que serão omitidos nos testes:
 omit =
     */__init__.py
     */settings.py
+    */manage.py
     */wsgi.py
     */apps.py
     */urls.py
