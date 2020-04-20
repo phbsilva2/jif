@@ -16,3 +16,11 @@ class TipoModalidadeTestCase(TestCase):
 
     def test_str(self):
         self.assertEquals(str(self.tipo_modalidade), self.tipo_modalidade.nome)
+
+
+class ModalidadeTestCase(TestCase):
+    def setUp(self):
+        self.modalidade = mommy.make('Modalidade')
+
+    def test_str(self):
+        self.assertEquals(str(self.modalidade), self.modalidade.nome)

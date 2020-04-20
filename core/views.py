@@ -1,6 +1,10 @@
 from django.views.generic import ListView
 
-from .models import UnidadeOrganizacional, TipoModalidade
+from .models import (
+    UnidadeOrganizacional,
+    TipoModalidade,
+    Modalidade
+)
 
 
 class UnidadeOrganizacionalListView(ListView):
@@ -9,3 +13,7 @@ class UnidadeOrganizacionalListView(ListView):
 
 class TipoModalidadeListView(ListView):
     model = TipoModalidade
+
+
+class ModalidadeListView(ListView):
+    model = Modalidade
