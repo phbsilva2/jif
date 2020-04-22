@@ -24,3 +24,11 @@ class ModalidadeTestCase(TestCase):
 
     def test_str(self):
         self.assertEquals(str(self.modalidade), self.modalidade.nome)
+
+
+class AtletaTestCase(TestCase):
+    def setUp(self):
+        self.atleta = mommy.make(('Atleta'))
+
+    def test_str(self):
+        self.assertEquals(str(self.atleta), self.atleta.nome)

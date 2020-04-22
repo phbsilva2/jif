@@ -3,7 +3,8 @@ from django.views.generic import ListView
 from .models import (
     UnidadeOrganizacional,
     TipoModalidade,
-    Modalidade
+    Modalidade,
+    Atleta,
 )
 
 
@@ -17,3 +18,7 @@ class TipoModalidadeListView(ListView):
 
 class ModalidadeListView(ListView):
     model = Modalidade
+
+
+class AtletaListView(ListView):
+    model = Atleta

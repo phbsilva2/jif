@@ -3,11 +3,13 @@ from django.urls import path
 from .views import (
     UnidadeOrganizacionalListView,
     TipoModalidadeListView,
-    ModalidadeListView
+    ModalidadeListView,
+    AtletaListView,
 )
 
 urlpatterns = [
     path('core/unidadeorganizacional/', UnidadeOrganizacionalListView.as_view(), name='unidade_organizacional'),
     path('core/tipomodalidade/', TipoModalidadeListView.as_view(), name='tipo_modalidade'),
     path('core/modalidade/', ModalidadeListView.as_view(), name='modalidade'),
+    path('core/atleta/', AtletaListView.as_view(), name='atleta'),
 ]
