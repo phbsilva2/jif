@@ -102,12 +102,20 @@ class Atleta (models.Model):
 
 
 class AtletaPorModalidade(models.Model):
+    # Atleta Por Modalidade representa a lotação permitida de atletas por modalidade.
+    #
+    # UC04 - Manter Atletas por Modalidae
+    #     FA01 - Incluir Atleta por Modalidade
+    #         2. O sistema apresenta os campos para entrada dos dados:
+    #             - Modalidade (Obrigatório / Não se repete)
+    #             - Lotação Permitida (Obrigatório / Não se repete)
+
     modalidade = models.ForeignKey(Modalidade, on_delete=models.CASCADE, verbose_name='Modalidade')
     lotacao_permitida = models.IntegerField('Lotação Permitida')
 
     class Meta:
         unique_together = ['modalidade', 'lotacao_permitida']
-        verbose_name = 'Atleta Por Modalidade'
+        verbose_name = 'Atleta por Modalidade'
         verbose_name_plural = 'Atletas por Modalidade'
 
     def __str__(self):
