@@ -120,3 +120,26 @@ class AtletaPorModalidade(models.Model):
 
     def __str__(self):
         return f"{self.modalidade}, Lotação Permitida: {self.lotacao_permitida}"
+
+
+class Inscricao(models.Model):
+    # Inscrição é ...
+    #
+    # UC07 - Manter Inscrições
+    #     FA01 - Incluir Inscrição
+    #         2. O sistema apresenta os campos para entrada dos dados:
+    #             - Modalidade (Obrigatório);
+    #             - Atleta (Obrigatório);
+    #             - Unidade (Obrigatório)
+
+    modalidade = models.ForeignKey(Modalidade, on_delete=models.CASCADE, verbose_name='Modalidade')
+    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE, verbose_name='Atleta')
+    unidade_organizacional = models.ForeignKey(UnidadeOrganizacional, on_delete=models.CASCADE, verbose_name='Unidade Organizacional')
+
+    class Meta:
+        unique_together = ['modalidade', 'atleta', 'unidade_organizacional']
+        verbose_name = 'Inscrição'
+        verbose_name_plural = 'Inscrições'
+
+    def __str__(self):
+        return f"{self.pk}"

@@ -34,10 +34,18 @@ class AtletaTestCase(TestCase):
         self.assertEquals(str(self.atleta), self.atleta.nome)
 
 
-class AtletaPorModalidade(TestCase):
+class AtletaPorModalidadeTestCase(TestCase):
     def setUp(self):
         self.atleta_por_modalidade = mommy.make('AtletaPorModalidade')
 
     def test_str(self):
         self.assertEquals(str(self.atleta_por_modalidade),
                           f"{self.atleta_por_modalidade.modalidade}, Lotação Permitida: {self.atleta_por_modalidade.lotacao_permitida}")
+
+
+class InscricaoTestCase(TestCase):
+    def setUp(self):
+        self.inscricao = mommy.make('Inscricao')
+
+    def test_str(self):
+        self.assertEquals(str(self.inscricao), f"{self.inscricao.pk}")

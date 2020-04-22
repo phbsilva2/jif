@@ -6,6 +6,7 @@ from .views import (
     ModalidadeListView,
     AtletaListView,
     AtletaPorModalidadeListView,
+    InscricaoListView,
 )
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
     path('core/modalidade/', ModalidadeListView.as_view(), name='modalidade'),
     path('core/atleta/', AtletaListView.as_view(), name='atleta'),
     path('core/atletapormodalidade/', AtletaPorModalidadeListView.as_view(), name='atleta_por_modalidade'),
+    path('core/inscricao/', InscricaoListView.as_view(), name='inscricao'),
 ]
