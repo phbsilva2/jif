@@ -5,6 +5,7 @@ from .views import (
     TipoModalidadeListView,
     ModalidadeListView,
     AtletaListView,
+    AtletaPorModalidadeListView,
 )
 
 urlpatterns = [
@@ -12,4 +13,5 @@ urlpatterns = [
     path('core/tipomodalidade/', TipoModalidadeListView.as_view(), name='tipo_modalidade'),
     path('core/modalidade/', ModalidadeListView.as_view(), name='modalidade'),
     path('core/atleta/', AtletaListView.as_view(), name='atleta'),
+    path('core/atletapormodalidade/', AtletaPorModalidadeListView.as_view(), name='atleta_por_modalidade'),
 ]

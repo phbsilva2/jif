@@ -99,3 +99,16 @@ class Atleta (models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class AtletaPorModalidade(models.Model):
+    modalidade = models.ForeignKey(Modalidade, on_delete=models.CASCADE, verbose_name='Modalidade')
+    lotacao_permitida = models.IntegerField('Lotação Permitida')
+
+    class Meta:
+        unique_together = ['modalidade', 'lotacao_permitida']
+        verbose_name = 'Atleta Por Modalidade'
+        verbose_name_plural = 'Atletas por Modalidade'
+
+    def __str__(self):
+        return f"{self.modalidade}, Lotação Permitida: {self.lotacao_permitida}"

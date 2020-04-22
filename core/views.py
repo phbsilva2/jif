@@ -5,6 +5,7 @@ from .models import (
     TipoModalidade,
     Modalidade,
     Atleta,
+    AtletaPorModalidade,
 )
 
 
@@ -22,3 +23,7 @@ class ModalidadeListView(ListView):
 
 class AtletaListView(ListView):
     model = Atleta
+
+
+class AtletaPorModalidadeListView(ListView):
+    model = AtletaPorModalidade

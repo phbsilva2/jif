@@ -5,6 +5,7 @@ from .models import (
     TipoModalidade,
     Modalidade,
     Atleta,
+    AtletaPorModalidade,
 )
 
 
@@ -40,5 +41,14 @@ class Atleta(admin.ModelAdmin):
     list_display = ('nome', 'matricula', 'data_nascimento', 'foto')
     ordering = ('nome',)
     search_fields = ('nome', 'matricula')
+    list_per_page = 10
+    actions_on_top = False
+
+
+@admin.register(AtletaPorModalidade)
+class AtletaPorModalidade(admin.ModelAdmin):
+    list_display = ('modalidade', 'lotacao_permitida')
+    ordering = ('modalidade', 'lotacao_permitida')
+    search_fields = ('modalidade',)
     list_per_page = 10
     actions_on_top = False
