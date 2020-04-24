@@ -104,7 +104,7 @@ class Atleta (models.Model):
 class AtletaPorModalidade(models.Model):
     # Atleta Por Modalidade representa a lotação permitida de atletas por modalidade.
     #
-    # UC04 - Manter Atletas por Modalidae
+    # UC04 - Manter Atletas por Modalidade
     #     FA01 - Incluir Atleta por Modalidade
     #         2. O sistema apresenta os campos para entrada dos dados:
     #             - Modalidade (Obrigatório / Não se repete)
