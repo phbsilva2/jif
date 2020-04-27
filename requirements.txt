@@ -4,6 +4,7 @@ coverage==5.1
 Django==2.2.12
 django-adminlte2==0.4.1
 django-bootstrap4==1.1.1
+django-crispy-forms==1.9.0
 django-stdimage==5.1.1
 model-mommy==2.0.0
 Pillow==7.1.1

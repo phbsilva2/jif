@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content_header %}
+<section class="content-header">
+    <h1>Unidade Organizacional</h1>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <table id="result_list" class="table table-hover table-striped">
+        <tbody>
+            <tr class="row1">
+                <td style="width:80px">
+                    <span><bold>Nome:</bold></span>
+                </td>
+                <td>
+                    <span>{{unidade_organizacional.nome}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,19 +1,12 @@
 from django.urls import path
 
-from .views import (
-    UnidadeOrganizacionalListView,
-    TipoModalidadeListView,
-    ModalidadeListView,
-    AtletaListView,
-    AtletaPorModalidadeListView,
-    InscricaoListView,
-)
+from . import views
 
 urlpatterns = [
-    path('core/unidadeorganizacional/', UnidadeOrganizacionalListView.as_view(), name='unidade_organizacional'),
-    path('core/tipomodalidade/', TipoModalidadeListView.as_view(), name='tipo_modalidade'),
-    path('core/modalidade/', ModalidadeListView.as_view(), name='modalidade'),
-    path('core/atleta/', AtletaListView.as_view(), name='atleta'),
-    path('core/atletapormodalidade/', AtletaPorModalidadeListView.as_view(), name='atleta_por_modalidade'),
-    path('core/inscricao/', InscricaoListView.as_view(), name='inscricao'),
+    path('', views.mainList, name='main_list'),
+    path('unidadeorganizacional/', views.unidadeOrganizacionalList, name='unidade_organizacional_list'),
+    path('unidadeorganizacional/<int:id>', views.unidadeOrganizacionalView, name="unidade_organizacional_view"),
+    path('unidadeorganizacional_add/', views.unidadeOrganizacionalAdd, name="unidade_organizacional_add"),
+    path('unidadeorganizacional_edit/<int:id>', views.unidadeOrganizacionalEdit, name="unidade_organizacional_edit"),
+    path('unidadeorganizacional_delete/<int:id>', views.unidadeOrganizacionalDelete, name="unidade_organizacional_delete"),
 ]
