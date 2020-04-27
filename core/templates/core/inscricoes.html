@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content_header %}
+<section class="content-header">
+    <h1>Fichas de Inscrição</h1>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+
+    <form action="{% url 'inscricoes' %}" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" class="default" value="Enviar">
+    </form>
+</div>
+{% endblock %}

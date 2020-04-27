@@ -136,6 +136,8 @@ class Inscricao(models.Model):
     atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE, verbose_name='Atleta')
     unidade_organizacional = models.ForeignKey(UnidadeOrganizacional, on_delete=models.CASCADE, verbose_name='Unidade Organizacional')
 
+    objects = models.Manager()
+
     class Meta:
         unique_together = ['modalidade', 'atleta', 'unidade_organizacional']
         verbose_name = 'Inscrição'

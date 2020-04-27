@@ -13,6 +13,9 @@ from .models import (
     Inscricao,
 )
 
+from .forms import InscricoesRelatorioForm
+from .reports import inscricao_pdf
+
 
 class UnidadeOrganizacionalListView(ListView):
     model = UnidadeOrganizacional
@@ -107,3 +110,35 @@ def unidadeOrganizacionalDelete(request, id):
     messages.info(request, 'Unidade Organizacional deletada com sucesso.')
 
     return redirect('/unidadeorganizacional')
+
+
+def inscricoesList(request):
+    form = InscricoesRelatorioForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+
+            unidade_organizacional = form.cleaned_data['unidade_organizacional']
+            modalidade = form.cleaned_data['modalidade']
+
+            dados_inscritos = []
+
+            inscricoes = Inscricao.objects.filter(unidade_organizacional=unidade_organizacional, modalidade=modalidade)
+            if inscricoes:
+                for inscr in inscricoes:
+                    dados_inscrito = []
+                    dados_inscrito.append(str(inscr.atleta.nome))
+                    dados_inscrito.append(str(inscr.atleta.nome))
+                    dados_inscrito.append(str(inscr.atleta.rg))
+                    dados_inscrito.append(str(inscr.atleta.matricula))
+
+                    dados_inscritos.append(dados_inscrito)
+
+                return inscricao_pdf(unidade_organizacional, modalidade, dados_inscritos)
+
+    else:
+        form = InscricoesRelatorioForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'core/inscricoes.html', context)
