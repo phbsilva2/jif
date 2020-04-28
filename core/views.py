@@ -145,7 +145,7 @@ def fichaisncricao(request, uo_id, modalidade_id):
                 for inscr in inscricoes:
                     dados_inscrito = []
                     dados_inscrito.append(str(inscr.atleta.nome))
-                    dados_inscrito.append(str(inscr.atleta.data_nascimento))
+                    dados_inscrito.append('{:%d/%m/%Y}'.format(inscr.atleta.data_nascimento))
                     dados_inscrito.append(str(inscr.atleta.rg))
                     dados_inscrito.append(str(inscr.atleta.matricula))
                     if not uo_nome:
