@@ -10,4 +10,5 @@ urlpatterns = [
     path('unidadeorganizacional_edit/<int:id>', views.unidadeOrganizacionalEdit, name="unidade_organizacional_edit"),
     path('unidadeorganizacional_delete/<int:id>', views.unidadeOrganizacionalDelete, name="unidade_organizacional_delete"),
     path('inscricoes/', views.inscricoesList, name='inscricoes'),
+    path('fichainscricao/<int:uo_id>/<int:modalidade_id>', views.fichaisncricao, name='ficha_inscricao'),
 ]

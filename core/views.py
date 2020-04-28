@@ -117,28 +117,43 @@ def inscricoesList(request):
 
     if request.method == 'POST':
         if form.is_valid():
+            unidade_organizacional_id = form.cleaned_data['unidade_organizacional'].pk
+            modalidade_id = form.cleaned_data['modalidade'].pk
 
-            unidade_organizacional = form.cleaned_data['unidade_organizacional']
-            modalidade = form.cleaned_data['modalidade']
+            inscricoes = Inscricao.objects.filter(unidade_organizacional__pk=unidade_organizacional_id, modalidade__pk=modalidade_id)
 
-            dados_inscritos = []
-
-            inscricoes = Inscricao.objects.filter(unidade_organizacional=unidade_organizacional, modalidade=modalidade)
-            if inscricoes:
-                for inscr in inscricoes:
-                    dados_inscrito = []
-                    dados_inscrito.append(str(inscr.atleta.nome))
-                    dados_inscrito.append(str(inscr.atleta.nome))
-                    dados_inscrito.append(str(inscr.atleta.rg))
-                    dados_inscrito.append(str(inscr.atleta.matricula))
-
-                    dados_inscritos.append(dados_inscrito)
-
-                return inscricao_pdf(unidade_organizacional, modalidade, dados_inscritos)
-
+            return render(request, 'core/fichainscricao.html',
+                          {'form': form, 'inscricoes': inscricoes,
+                           'uo': unidade_organizacional_id,
+                           'modalidade': modalidade_id})
     else:
         form = InscricoesRelatorioForm()
     context = {
         'form': form
     }
-    return render(request, 'core/inscricoes.html', context)
+    return render(request, 'core/fichainscricao.html', context)
+
+
+def fichaisncricao(request, uo_id, modalidade_id):
+
+            dados_inscritos = []
+            uo_nome = ""
+            modalidade_nome = ""
+
+            inscricoes = Inscricao.objects.filter(unidade_organizacional__pk=uo_id, modalidade__pk=modalidade_id)
+            if inscricoes:
+                for inscr in inscricoes:
+                    dados_inscrito = []
+                    dados_inscrito.append(str(inscr.atleta.nome))
+                    dados_inscrito.append(str(inscr.atleta.data_nascimento))
+                    dados_inscrito.append(str(inscr.atleta.rg))
+                    dados_inscrito.append(str(inscr.atleta.matricula))
+                    if not uo_nome:
+                        uo_nome = inscr.unidade_organizacional.nome
+                    if not modalidade_nome:
+                        modalidade_nome = inscr.modalidade.nome
+
+                    dados_inscritos.append(dados_inscrito)
+
+                return inscricao_pdf(uo_nome, modalidade_nome, dados_inscritos)
+

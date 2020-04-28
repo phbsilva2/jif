@@ -8,22 +8,24 @@ from django.shortcuts import HttpResponse
 import io
 
 
-def inscricao_pdf(unidade_organizacional, modalidade, incricoes):
+def inscricao_pdf(unidade_organizacional_nome, modalidade_nome, inscricoes=[]):
 
-    dados = []
+    # dados = []
 
     cabecalho = ['Nome do Atleta', 'Data Nasc.', 'RG', 'Matrícula']
 
-    dados.append(cabecalho)
+    # dados.append(cabecalho)
+    #
+    # for inscricao in incricoes:
+    #     dados.append(inscricao)
 
-    for inscricao in incricoes:
-        dados.append(inscricao)
+    inscricoes.insert(0, cabecalho)
 
     pdf_buffer = io.BytesIO()
 
     pdf = SimpleDocTemplate(pdf_buffer, pagesize=A4)
 
-    table = Table(dados)
+    table = Table(inscricoes)
 
     # Adicionar estilo
     style = TableStyle([
@@ -42,7 +44,7 @@ def inscricao_pdf(unidade_organizacional, modalidade, incricoes):
     table.setStyle(style)
 
     # Alternar a cor do fundo
-    rowNumb = len(dados)
+    rowNumb = len(inscricoes)
     for i in range(1, rowNumb):
         if i % 2 == 0:
             bc = colors.white
@@ -69,8 +71,8 @@ def inscricao_pdf(unidade_organizacional, modalidade, incricoes):
     elems = []
     elems.append(Paragraph("<h1><b>IFB - Instituto Federal de Brasília</b></h1>", normal))
     elems.append(Spacer(1, 0.2 * inch))
-    elems.append(Paragraph("<h2>Unidade Organizacional: <b>%s</b></h2>" % (unidade_organizacional), normal))
-    elems.append(Paragraph("<h2>Modalidade: <b>%s</b></h2>" % (modalidade), normal))
+    elems.append(Paragraph("<h2>Unidade Organizacional: <b>%s</b></h2>" % (unidade_organizacional_nome), normal))
+    elems.append(Paragraph("<h2>Modalidade: <b>%s</b></h2>" % (modalidade_nome), normal))
     elems.append(Spacer(1, 0.2 * inch))
     elems.append(table)
 

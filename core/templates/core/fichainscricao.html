@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content_header %}
+<section class="content-header">
+    <h1>Ficha de Inscrição</h1>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <form action="{% url 'inscricoes' %}" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" class="default" value="Enviar">
+    </form>
+</div>
+
+{% if inscricoes %}
+
+<div class="box-tools pull-right">
+    <a href="/fichainscricao/{{ uo }}/{{ modalidade }}" class="btn btn-primary btn-sm">
+        <i class="fa fa-file"></i>
+        Gerar Ficha de Inscrição
+    </a>
+</div>
+
+<div class="results">
+    <table id="result_list" class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th><div class="text">Nome do Atleta</div></th>
+                <th><div class="text">Data Nasc.</div></th>
+                <th><div class="text">RG</div></th>
+                <th><div class="text">CPF</div></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inscricao in inscricoes %}
+            <tr class="row1">
+                <td>
+                    <span>{{inscricao.atleta.nome}}</span>
+                </td>
+                <td>
+                    {% if inscricao.atleta.data_nascimento %}
+                    <span>{{inscricao.atleta.data_nascimento}}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <span>{{inscricao.atleta.rg}}</span>
+                 </td>
+                <td>
+                    <span>{{inscricao.atleta.matricula}}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}
