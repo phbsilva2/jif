@@ -11,4 +11,7 @@ urlpatterns = [
     path('unidadeorganizacional_delete/<int:id>', views.unidadeOrganizacionalDelete, name="unidade_organizacional_delete"),
     path('inscricoes/', views.inscricoesList, name='inscricoes'),
     path('fichainscricao/<int:uo_id>/<int:modalidade_id>', views.fichaisncricao, name='ficha_inscricao'),
+    path('atletacampus/', views.atletaCampusList, name='atleta_campus'),
+    path('atletamodalidade/', views.atletaModalidadeList, name='atleta_modalidade'),
+    path('atletatipomodalidade/', views.atletaTipoModalidadeList, name='atleta_tipo_modalidade'),
 ]
