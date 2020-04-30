@@ -41,9 +41,9 @@
                     {% for uo in unidadades_organizacionais %}
                     <tr class="row1">
                         <td style="width:80px">
-                            <a href="/unidadeorganizacional/{{uo.id}}"><span><i class="fa fa-eye"></i> &nbsp;</span></a>
-                            <a href="/unidadeorganizacional_edit/{{uo.id}}"><span><i class="fa fa-edit"></i> &nbsp;</span></a>
-                            <a href="/unidadeorganizacional_delete/{{uo.id}}" class="delete-btn"><span><i class="fa fa-trash"></i></span></a>
+                            <a href="/unidadeorganizacional/{{uo.id}}" title="Visualizar"><span><i class="fa fa-eye"></i> &nbsp;</span></a>
+                            <a href="/unidadeorganizacional_edit/{{uo.id}}" title="Editar"><span><i class="fa fa-edit"></i> &nbsp;</span></a>
+                            <a href="/unidadeorganizacional_delete/{{uo.id}}" title="Excluir" class="delete-btn"><span><i class="fa fa-trash"></i></span></a>
                         </td>
                         <td>
                             <span>{{uo.nome}}</span>
