@@ -1,4 +1,5 @@
 from django.views.generic import ListView
+from django.views.generic.edit import DeleteView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -120,15 +121,10 @@ def unidadeOrganizacionalEdit(request, id):
                       {'form': form, 'unidade_organizacional': unidade_organizacional})
 
 
-@login_required
-def unidadeOrganizacionalDelete(request, id):
-    unidade_organizacional = get_object_or_404(UnidadeOrganizacional, pk=id)
-    uo_nome = unidade_organizacional.nome
-    unidade_organizacional.delete()
-
-    messages.success(request, f'A Unidade Organizacional "{uo_nome}" foi excluída com sucesso!')
-
-    return redirect('/unidadeorganizacional')
+class UnidadeOrganizacionalDeleteView(DeleteView):
+    model = UnidadeOrganizacional
+    context_object_name = 'unidade_organizacional'
+    success_url = "/unidadeorganizacional"
 
 
 @login_required
