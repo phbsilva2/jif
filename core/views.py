@@ -60,16 +60,22 @@ def logoutList(request):
 @login_required
 def unidadeOrganizacionalList(request):
     search = request.GET.get('search')
+    unidadades_organizacionais = None
 
     if search:
         unidadades_organizacionais_list = UnidadeOrganizacional.objects.filter(nome__icontains=search).order_by('nome')
     else:
         unidadades_organizacionais_list = UnidadeOrganizacional.objects.all().order_by('nome')
 
-    paginator = Paginator(unidadades_organizacionais_list, 10)
+    if unidadades_organizacionais_list:
 
-    page = request.GET.get('page')
-    unidadades_organizacionais = paginator.get_page(page)
+        paginator = Paginator(unidadades_organizacionais_list, 10)
+
+        page = request.GET.get('page')
+        unidadades_organizacionais = paginator.get_page(page)
+
+    else:
+        messages.info(request, 'Nenhuma Unidade Organizacional localizada!')
 
     return render(request, 'core/unidadeorganizacional_list.html',
                   {'unidadades_organizacionais': unidadades_organizacionais})
@@ -117,9 +123,10 @@ def unidadeOrganizacionalEdit(request, id):
 @login_required
 def unidadeOrganizacionalDelete(request, id):
     unidade_organizacional = get_object_or_404(UnidadeOrganizacional, pk=id)
+    uo_nome = unidade_organizacional.nome
     unidade_organizacional.delete()
 
-    messages.info(request, 'Unidade Organizacional deletada com sucesso.')
+    messages.success(request, f'A Unidade Organizacional "{uo_nome}" foi excluída com sucesso!')
 
     return redirect('/unidadeorganizacional')
 

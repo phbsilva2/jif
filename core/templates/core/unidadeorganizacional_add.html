@@ -3,7 +3,7 @@
 
 {% block content_header %}
 <section class="content-header">
-    <h1>Adicionando nova Unidade Organizacional</h1></section>
+    <h1>Adicionar nova Unidade Organizacional</h1></section>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" class="default" value="Adicionar a Unidade Organizacional">
+        <input type="submit" class="btn btn-primary btn-sm" value="Salvar">
     </form>
 </div>
 {% endblock %}

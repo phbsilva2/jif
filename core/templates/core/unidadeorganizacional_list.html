@@ -28,7 +28,7 @@
                 </form>
             </div>
         </div>
-
+        {% if unidadades_organizacionais %}
         <div class="results">
             <table id="result_list" class="table table-hover table-striped">
                 <thead>
@@ -71,6 +71,7 @@
                 {% endif %}
             </span>
         </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}
