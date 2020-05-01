@@ -62,9 +62,9 @@ def unidadeOrganizacionalList(request):
     search = request.GET.get('search')
 
     if search:
-        unidadades_organizacionais_list = UnidadeOrganizacional.objects.filter(nome__icontains=search)
+        unidadades_organizacionais_list = UnidadeOrganizacional.objects.filter(nome__icontains=search).order_by('nome')
     else:
-        unidadades_organizacionais_list = UnidadeOrganizacional.objects.all()
+        unidadades_organizacionais_list = UnidadeOrganizacional.objects.all().order_by('nome')
 
     paginator = Paginator(unidadades_organizacionais_list, 10)
 

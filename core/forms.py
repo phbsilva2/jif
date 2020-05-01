@@ -11,16 +11,16 @@ class UnidadeOrganizacionalModelForm(forms.ModelForm):
 
 
 class RelatorioInscricoesForm(forms.Form):
-    unidade_organizacional = forms.ModelChoiceField(UnidadeOrganizacional.objects)
-    modalidade = forms.ModelChoiceField(Modalidade.objects)
+    unidade_organizacional = forms.ModelChoiceField(UnidadeOrganizacional.objects.all().order_by('nome'))
+    modalidade = forms.ModelChoiceField(Modalidade.objects.all().order_by('nome'))
 
 
 class RelatorioAtletasCampusForm(forms.Form):
-    unidade_organizacional = forms.ModelChoiceField(UnidadeOrganizacional.objects, required=False)
+    unidade_organizacional = forms.ModelChoiceField(UnidadeOrganizacional.objects.all().order_by('nome'), required=False)
 
 class RelatorioAtletasModalidadeForm(forms.Form):
-    modalidade = forms.ModelChoiceField(Modalidade.objects, required=False)
+    modalidade = forms.ModelChoiceField(Modalidade.objects.all().order_by('nome'), required=False)
 
 
 class RelatorioAtletasTipoModalidadeForm(forms.Form):
-    tipo_modalidade = forms.ModelChoiceField(TipoModalidade.objects, required=False)
+    tipo_modalidade = forms.ModelChoiceField(TipoModalidade.objects.all().order_by('nome'), required=False)
