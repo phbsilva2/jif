@@ -51,6 +51,12 @@ class InscricaoListView(ListView):
 def mainList(request):
     return render(request, 'core/main.html')
 
+
+@login_required
+def logoutList(request):
+    return redirect('/accounts/logout/')
+
+
 @login_required
 def unidadeOrganizacionalList(request):
     search = request.GET.get('search')
@@ -118,6 +124,7 @@ def unidadeOrganizacionalDelete(request, id):
     return redirect('/unidadeorganizacional')
 
 
+@login_required
 def inscricoesList(request):
     form = RelatorioInscricoesForm(request.POST or None)
 
@@ -140,6 +147,7 @@ def inscricoesList(request):
     return render(request, 'core/fichainscricao.html', context)
 
 
+@login_required
 def fichaisncricao(request, uo_id, modalidade_id):
 
             dados_inscritos = []
@@ -164,6 +172,7 @@ def fichaisncricao(request, uo_id, modalidade_id):
                 return inscricao_pdf(uo_nome, modalidade_nome, dados_inscritos)
 
 
+@login_required
 def atletaCampusList(request):
     form = RelatorioAtletasCampusForm(request.POST or None)
 
@@ -187,6 +196,7 @@ def atletaCampusList(request):
     return render(request, 'core/atletacampus.html', context)
 
 
+@login_required
 def atletaModalidadeList(request):
     form = RelatorioAtletasModalidadeForm(request.POST or None)
 
@@ -210,6 +220,7 @@ def atletaModalidadeList(request):
     return render(request, 'core/atletamodalidade.html', context)
 
 
+@login_required
 def atletaTipoModalidadeList(request):
     form = RelatorioAtletasTipoModalidadeForm(request.POST or None)
 

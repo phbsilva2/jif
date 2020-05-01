@@ -14,4 +14,5 @@ urlpatterns = [
     path('atletacampus/', views.atletaCampusList, name='atleta_campus'),
     path('atletamodalidade/', views.atletaModalidadeList, name='atleta_modalidade'),
     path('atletatipomodalidade/', views.atletaTipoModalidadeList, name='atleta_tipo_modalidade'),
+    path('logout/', views.logoutList, name='log_out'),
 ]
