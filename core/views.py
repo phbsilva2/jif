@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic.detail import DetailView
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -81,11 +82,9 @@ def unidadeOrganizacionalList(request):
                   {'unidadades_organizacionais': unidadades_organizacionais})
 
 
-@login_required
-def unidadeOrganizacionalView(request, id):
-    unidade_organizacional = get_object_or_404(UnidadeOrganizacional, pk=id)
-    return render(request, 'core/unidadeorganizacional.html',
-                  {'unidade_organizacional': unidade_organizacional})
+class UnidadeOrganizacionalDetailView(DetailView):
+    model = UnidadeOrganizacional
+    context_object_name = 'unidade_organizacional'
 
 
 class UnidadeOrganizacionalCreateView(CreateView):
