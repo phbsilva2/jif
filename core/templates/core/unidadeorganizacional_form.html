@@ -3,13 +3,20 @@
 
 {% block content_header %}
 <section class="content-header">
-    <h1>Editar "{{unidade_organizacional.nome}}"</h1>
+    {% if unidade_organizacional %}
+    <h1>Editar Unidade Organizacional</h1>
+    {% else %}
+    <h1>Adicionar Unidade Organizacional</h1>
+    {% endif %}
 </section>
 {% endblock %}
 
 {% block content %}
 <div class="offset-1 col-10 list-div">
     <form method="post">
+        {% if unidade_organizacional %}
+        <p>Você está editando "{{ unidade_organizacional.nome }}" </p>
+        {% endif %}
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" class="btn btn-primary btn-sm" value="Salvar">

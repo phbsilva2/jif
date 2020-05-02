@@ -1,10 +1,9 @@
 from django.views.generic import ListView
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib import messages
-from .forms import UnidadeOrganizacionalModelForm
 from .models import (
     UnidadeOrganizacional,
     TipoModalidade,
@@ -89,17 +88,10 @@ def unidadeOrganizacionalView(request, id):
                   {'unidade_organizacional': unidade_organizacional})
 
 
-@login_required
-def unidadeOrganizacionalAdd(request):
-    if request.method == 'POST':
-        form = UnidadeOrganizacionalModelForm(request.POST)
-
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect('/unidadeorganizacional')
-    else:
-        form = UnidadeOrganizacionalModelForm()
-        return render(request, 'core/unidadeorganizacional_add.html', {'form': form})
+class UnidadeOrganizacionalCreateView(CreateView):
+    model = UnidadeOrganizacional
+    fields = ["nome"]
+    success_url = "/unidadeorganizacional"
 
 
 class UnidadeOrganizacionalUpdateView(UpdateView):
