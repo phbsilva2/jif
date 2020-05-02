@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
 from .models import (
@@ -87,16 +88,18 @@ class UnidadeOrganizacionalDetailView(DetailView):
     context_object_name = 'unidade_organizacional'
 
 
-class UnidadeOrganizacionalCreateView(CreateView):
+class UnidadeOrganizacionalCreateView(SuccessMessageMixin, CreateView):
     model = UnidadeOrganizacional
     fields = ["nome"]
+    success_message = "Unidade Organizacional adicionada com sucesso!"
     success_url = "/unidadeorganizacional"
 
 
-class UnidadeOrganizacionalUpdateView(UpdateView):
+class UnidadeOrganizacionalUpdateView(SuccessMessageMixin, UpdateView):
     model = UnidadeOrganizacional
     fields = ["nome"]
     context_object_name = 'unidade_organizacional'
+    success_message = "Unidade Organizacional alterada com sucesso!"
     success_url = "/unidadeorganizacional"
 
 
@@ -104,6 +107,10 @@ class UnidadeOrganizacionalDeleteView(DeleteView):
     model = UnidadeOrganizacional
     context_object_name = 'unidade_organizacional'
     success_url = "/unidadeorganizacional"
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, f"Unidade Organizacional {self.get_object()} excluída com sucesso!")
+        return super(UnidadeOrganizacionalDeleteView, self).delete(request, *args, **kwargs)
 
 
 @login_required
