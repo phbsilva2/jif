@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -102,23 +102,11 @@ def unidadeOrganizacionalAdd(request):
         return render(request, 'core/unidadeorganizacional_add.html', {'form': form})
 
 
-@login_required
-def unidadeOrganizacionalEdit(request, id):
-    unidade_organizacional = get_object_or_404(UnidadeOrganizacional, pk=id)
-    form = UnidadeOrganizacionalModelForm(instance=unidade_organizacional)
-
-    if request.method == 'POST':
-        form = UnidadeOrganizacionalModelForm(request.POST, instance=unidade_organizacional)
-
-        if form.is_valid():
-            unidade_organizacional.save()
-            return redirect('/unidadeorganizacional')
-        else:
-            return render(request, 'core/unidadeorganizacional_edit.html',
-                          {'form': form, 'unidade_organizacional': unidade_organizacional})
-    else:
-        return render(request, 'core/unidadeorganizacional_edit.html',
-                      {'form': form, 'unidade_organizacional': unidade_organizacional})
+class UnidadeOrganizacionalUpdateView(UpdateView):
+    model = UnidadeOrganizacional
+    fields = ["nome"]
+    context_object_name = 'unidade_organizacional'
+    success_url = "/unidadeorganizacional"
 
 
 class UnidadeOrganizacionalDeleteView(DeleteView):
