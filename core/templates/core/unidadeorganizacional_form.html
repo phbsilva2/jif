@@ -19,7 +19,10 @@
         {% endif %}
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" class="btn btn-primary btn-sm" value="Salvar">
+        <div class="box-tools pull-left">
+            <input type="submit" class="btn btn-primary btn-sm" value="Salvar">
+            <a href="{% url 'unidade_organizacional_list' %}" class="btn btn-primary btn-sm">Cancelar</a>
+        </div>
     </form>
 </div>
 {% endblock %}
